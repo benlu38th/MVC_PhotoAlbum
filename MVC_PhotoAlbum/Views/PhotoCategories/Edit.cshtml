@@ -1,0 +1,67 @@
+﻿@model MVC_PhotoAlbum.Models.PhotoCategory
+
+@{ Layout = "~/Views/Shared/_LayoutDashboard.cshtml"; }
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>編輯</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>相簿</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight: 700;" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            @Html.Label("相簿封面", htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight: 700;" })
+            <div class="col-md-10 ">
+                @{
+                    var coverPhoto = ViewBag.CoverPhoto;
+
+                    if (coverPhoto != null)
+                    {
+                        <img src="@coverPhoto.PhotoUrl" style="max-width:100%" />
+                    }
+                    else
+                    {
+                        <img src="/Upload/Photos/noImage.jpg" style="max-width:100%" />
+                    }
+                }
+            </div>
+        </div>
+        <div class="form-group  mb-3">
+            @Html.LabelFor(model => model.InitDate, htmlAttributes: new { @class = "control-label col-md-2", @style = "font-weight: 700;" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.InitDate, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DisplayFor(model => model.InitDate)
+                @Html.HiddenFor(model => model.InitDate)
+                @Html.ValidationMessageFor(model => model.InitDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="確認送出" class="btn app-btn-primary" />
+                <a href="@Url.Action("Index")" class="btn app-btn-primary">返回</a>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

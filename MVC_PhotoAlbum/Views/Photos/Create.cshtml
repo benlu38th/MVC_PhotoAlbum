@@ -1,0 +1,46 @@
+﻿@model MVC_PhotoAlbum.Models.Photo
+
+@{ Layout = "~/Views/Shared/_LayoutDashboard.cshtml";}
+
+@{
+    ViewBag.Title = "Create";
+    var photoCategoryId = ViewBag.PhotoCategoryId;
+    var photoCategory = ViewBag.PhotoCategory;
+}
+
+<h2>新增</h2>
+
+
+@using (Html.BeginForm("Create", "Photos", new { AlbumId = ViewBag.PhotoCategoryIdNum }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>@ViewBag.PhotoCategory  的 相片</h4>
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.PhotoCategoryId, new { Value = ViewBag.PhotoCategoryIdNum })
+                @Html.ValidationMessageFor(model => model.PhotoCategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhotoUrl, "上傳檔案", htmlAttributes: new { @class = "control-label col-md-2", @style= "font-weight: 700" })
+            <div class="col-md-10">
+                <input type="file" name="ImageFiles" accept="image/*" multiple>
+            </div>
+        </div>
+
+        <br />
+
+        <input type="submit" value="確定送出" class="btn app-btn-primary" />
+        <a href="@Url.Action("Index", "Photos", new { id = ViewBag.PhotoCategoryIdNum })" class="btn app-btn-primary">返回</a>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

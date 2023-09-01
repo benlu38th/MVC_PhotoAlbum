@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MVC_PhotoAlbum.Models.Photo>
+
+@{ Layout = "~/Views/Shared/_LayoutDashboard.cshtml";}
+
+@{
+    ViewBag.Title = "相片";
+}
+
+<h2>@ViewBag.PhotoCategory  的  相片</h2>
+
+<a href="@Url.Action("Create","Photos", new { id = @ViewBag.CategoryId })" class="btn app-btn-primary mb-2">新增相片</a>
+<a href="/PhotoCategories/Index" class="btn app-btn-primary mb-2">返回</a>
+
+<table class="table">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.MyPhotoCategory.Name)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>*@
+        <th>
+            相片
+            @*@Html.DisplayNameFor(model => model.PhotoUrl)*@
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCover)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InitDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.MyPhotoCategory.Name)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>*@
+            <td>
+                <img src="@item.PhotoUrl" height="50px"/>
+                    @*@Html.DisplayFor(modelItem => item.PhotoUrl)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCover)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InitDate)
+            </td>
+            <td>
+                @Html.ActionLink("編輯", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("細節", "Details", new { id = item.Id }) |
+                @Html.ActionLink("刪除", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

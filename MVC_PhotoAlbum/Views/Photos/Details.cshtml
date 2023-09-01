@@ -1,0 +1,68 @@
+﻿@model MVC_PhotoAlbum.Models.Photo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>相片 細節</h2>
+
+    <a href="@Url.Action("Edit", "Photos", new { id = Model.Id })" class="btn app-btn-primary">編輯</a>
+    <a href="@Url.Action("Index", "Photos", new { id = ViewBag.PhotoCategoryIdNum })" class="btn app-btn-primary">返回</a>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            所屬相簿
+            @*@Html.DisplayNameFor(model => model.MyPhotoCategory.Name)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyPhotoCategory.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            相片
+            @*@Html.DisplayNameFor(model => model.PhotoUrl)*@
+        </dt>
+
+        <dd>
+            <image src="@Model.PhotoUrl" style="max-width:100%"/>
+            @*@Html.DisplayFor(model => model.PhotoUrl)*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCover)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCover)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InitDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InitDate)
+        </dd>
+
+    </dl>
+</div>
+

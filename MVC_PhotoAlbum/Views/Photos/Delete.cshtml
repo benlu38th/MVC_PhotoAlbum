@@ -1,0 +1,76 @@
+﻿@model MVC_PhotoAlbum.Models.Photo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>刪除</h2>
+
+<h3>你確定要刪除嗎?</h3>
+<div>
+    <hr />
+    <h4>相片</h4>
+    <dl class="dl-horizontal">
+        <dt>
+            所屬相簿
+            @*@Html.DisplayNameFor(model => model.MyPhotoCategory.Name)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyPhotoCategory.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            相片
+            @*@Html.DisplayNameFor(model => model.PhotoUrl)*@
+        </dt>
+
+        <dd>
+            <image src="@Model.PhotoUrl" style="max-width:100%"/>
+            @*@Html.DisplayFor(model => model.PhotoUrl)*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCover)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCover)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InitDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InitDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="確認刪除" class="btn app-btn-primary" />
+            <a href="@Url.Action("Index", new { id = @Model.PhotoCategoryId })" class="btn app-btn-primary">返回</a>
+        </div>
+    }
+</div>

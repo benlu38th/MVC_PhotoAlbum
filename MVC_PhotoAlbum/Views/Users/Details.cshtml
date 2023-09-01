@@ -1,0 +1,32 @@
+﻿@model MVC_PhotoAlbum.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>帳號 細節</h2>
+
+<a href="@Url.Action("Edit", "Users", new { id = Model.Id })" class="btn app-btn-primary">編輯</a>
+<a href="@Url.Action("Index", "Users")" class="btn app-btn-primary">返回</a>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Account)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.role)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.role)
+        </dd>
+
+    </dl>
+</div>
